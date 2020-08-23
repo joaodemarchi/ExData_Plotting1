@@ -40,22 +40,10 @@ data <- data %>% mutate(DateTime = strptime(data$DateTime, "%Y-%m-%d %H:%M:%S"))
 # Back to the code:
 
 dev.set(4)
-png(filename = "plot4.png")
-par(mfrow = c(2,2), mar = c(2,4,1,1))
-# Top Left:
-with(data, plot(DateTime, Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)"))
-
-# Top Right:
-with(data, plot(DateTime, Voltage, type = "l", ylab = "Voltage", xlab = "datetime"))
-
-# Bottom Left:
-plot(data$DateTime, data$Sub_metering_1, type = "n", ylab = "Energy sub metering")
+png(filename = "plot3.png", width = 480, height = 480)
+plot(data$DateTime, data$Sub_metering_1, type = "n", ylab = "Energy sub metering", xlab = "")
 points(data$DateTime, data$Sub_metering_1, type = "l")
 points(data$DateTime, data$Sub_metering_2, type = "l", col = "red")
 points(data$DateTime, data$Sub_metering_3, type = "l", col = "blue")
 legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lwd = 2, col = c("black","red","blue"))
-
-# Bottom Right:
-with(data, plot(DateTime, Global_reactive_power, type = "l", ylab = "Global_reactive_power", xlab = "datetime"))
-
 dev.off()

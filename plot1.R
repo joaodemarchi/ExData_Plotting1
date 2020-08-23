@@ -27,7 +27,7 @@ data <- data %>% mutate(DateTime = strptime(data$DateTime, "%Y-%m-%d %H:%M:%S"))
 # Creating the plot:
 
 dev.set(4)
-png(filename = "plot1.png")
+png(filename = "plot1.png", width = 480, height = 480)
 hist(data$Global_active_power,
      ylim = range(0,1200),
      xlab = "Global Active Power (kilowatts)", 
